@@ -2,7 +2,13 @@
 
 :root{
     --bgCalender : #F7F9F7;
+    --bgIcon : #eff0ef;
+    --bgIconHover : #d8d7d7;
     --bgColor : #9191E9;
+    --bgInactive : #a3a3a3;
+    --bgDayNow : #FF521B;
+    --bgHover : rgb(241, 228, 228);
+    --fontDayNow : white;
 }
 
 
@@ -55,11 +61,11 @@
     line-height: 1.9rem;
     border-radius: 50%;
     color: grey;
-    background-color: azure;
+    background-color: var(--bgIcon);
 }
 
 .header .right span:hover{
-    background-color: blanchedalmond;
+    background-color: var(--bgIconHover);
 }
 
 .header .left{
@@ -79,9 +85,6 @@
     margin-bottom: 20px;
 }
 
-.body .days li{
-    margin-bottom: 30px;
-}
 
 .body ul{
     list-style: none;
@@ -91,5 +94,40 @@
 }
 
 .body ul li{
+    position: relative;
     width: calc(100%/7);
+}
+
+.body .days li{
+    margin-bottom: 30px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.body .days li::before{
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    z-index: -1;
+}
+
+.days li:hover::before{
+    background-color: var(--bgHover);
+}
+
+.inactive{
+    color: var(--bgInactive);
+}
+
+.days li.active{
+    color: var(--fontDayNow);
+}
+
+.days .active::before{
+    background-color: var(--bgDayNow);
 }
